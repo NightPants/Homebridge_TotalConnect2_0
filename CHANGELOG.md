@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-10-31
+
+### Added
+- Official Total Connect 2.0 app icon bundled in package root and custom settings UI.
+- Renamed platform and npm package to Honeywell Total Connect 2.0.
+
 ## [1.0.0] - 2026-10-31
 
 ### Added
