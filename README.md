@@ -60,8 +60,8 @@ Built for **Homebridge 1.8 & 2.0+** and **Node.js 22 / 24** with zero external H
 ### Option B: Install Directly from GitHub / Local Clone
 
 ```bash
-git clone https://github.com/NightPants/HoyTotalConnect2_0-.git
-cd HoyTotalConnect2_0-
+git clone https://github.com/NightPants/Homebridge_TotalConnect2_0.git
+cd Homebridge_TotalConnect2_0
 npm ci
 npm run build
 npm link

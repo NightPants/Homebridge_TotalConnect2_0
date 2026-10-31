@@ -7,13 +7,13 @@
   "main": "dist/index.js",
   "license": "MIT",
   "author": "NightPants",
-  "homepage": "https://github.com/NightPants/HoyTotalConnect2_0-#readme",
+  "homepage": "https://github.com/NightPants/Homebridge_TotalConnect2_0#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NightPants/HoyTotalConnect2_0-.git"
+    "url": "git+https://github.com/NightPants/Homebridge_TotalConnect2_0.git"
   },
   "bugs": {
-    "url": "https://github.com/NightPants/HoyTotalConnect2_0-/issues"
+    "url": "https://github.com/NightPants/Homebridge_TotalConnect2_0/issues"
   },
   "keywords": [
     "homebridge-plugin",

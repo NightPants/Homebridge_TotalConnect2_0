@@ -21,5 +21,5 @@
 
 ## Reporting a Vulnerability
 
-Please report security issues privately via [GitHub Security Advisories](https://github.com/NightPants/HoyTotalConnect2_0-/security/advisories/new) rather than opening a public issue.
+Please report security issues privately via [GitHub Security Advisories](https://github.com/NightPants/Homebridge_TotalConnect2_0/security/advisories/new) rather than opening a public issue.
 
