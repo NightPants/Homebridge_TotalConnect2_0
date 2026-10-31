@@ -1,0 +1,11 @@
+node_modules/
+coverage/
+*.log
+*.tgz
+.DS_Store
+.env
+.env.*
+# Local Homebridge test instance (contains credentials)
+.homebridge/
+# Salesforce CLI state (unrelated to this project)
+.sf/

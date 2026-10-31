@@ -1,0 +1,170 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title mb-1">Total Connect 2.0</h5>
+    <p class="card-text small text-muted mb-3">
+      Test your account and discover your locations, partitions and zones. Credentials are sent only to
+      Resideo's Total Connect servers and are never stored by this screen until you press <strong>Save</strong>.
+    </p>
+    <div class="d-flex flex-wrap gap-2 align-items-center">
+      <button type="button" class="btn btn-primary" id="tc-discover">Test Login &amp; Discover</button>
+      <span id="tc-status" class="small"></span>
+    </div>
+    <div id="tc-results" class="mt-3"></div>
+  </div>
+</div>
+
+<script>
+  (async () => {
+    const button = document.getElementById('tc-discover');
+    const status = document.getElementById('tc-status');
+    const results = document.getElementById('tc-results');
+
+    const TYPE_LABELS = {
+      contact: 'Contact',
+      motion: 'Motion',
+      smoke: 'Smoke',
+      carbonMonoxide: 'CO',
+      leak: 'Leak',
+      occupancy: 'Occupancy',
+      hidden: 'Hidden (button/keyfob)',
+    };
+
+    let config = (await homebridge.getPluginConfig())[0] ?? { platform: 'HoyTotalConnect', name: 'Total Connect' };
+    await homebridge.updatePluginConfig([config]);
+    homebridge.showSchemaForm();
+
+    window.addEventListener('configChanged', (event) => {
+      if (Array.isArray(event.data) && event.data[0]) {
+        config = event.data[0];
+      }
+    });
+
+    /** Small DOM helper. Text is always set via textContent (never innerHTML) to avoid XSS. */
+    const el = (tag, attrs = {}, ...children) => {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'class') node.className = v;
+        else if (k === 'text') node.textContent = v;
+        else node.setAttribute(k, v);
+      }
+      for (const child of children) node.append(child);
+      return node;
+    };
+
+    async function saveConfig(mutator) {
+      const [current] = await homebridge.getPluginConfig();
+      const next = { ...(current ?? config) };
+      mutator(next);
+      config = next;
+      await homebridge.updatePluginConfig([next]);
+      homebridge.closeSchemaForm?.();
+      homebridge.showSchemaForm();
+    }
+
+    function renderLocation(loc) {
+      const card = el('div', { class: 'border rounded p-2 mb-3' });
+      card.append(el('div', { class: 'fw-bold', text: `${loc.name}` }));
+      card.append(el('div', { class: 'small text-muted mb-2', text: `Location ID ${loc.locationId} · Panel device ${loc.deviceId}` }));
+
+      if (loc.error) {
+        card.append(el('div', { class: 'alert alert-warning py-1 small', text: `Could not read panel details: ${loc.error}` }));
+        return card;
+      }
+
+      const parts = loc.partitions.map((p) => `${p.id}: ${p.name}${p.nightSupported ? '' : ' (no Night Stay)'}`).join(' · ');
+      card.append(el('div', { class: 'small mb-2', text: `Partitions — ${parts || 'none reported'}` }));
+
+      const actions = el('div', { class: 'd-flex flex-wrap gap-2 mb-2' });
+      const nameBtn = el('button', { type: 'button', class: 'btn btn-sm btn-outline-secondary', text: 'Use this location name' });
+      nameBtn.addEventListener('click', () =>
+        saveConfig((c) => {
+          const list = (c.locations ?? []).filter((l) => l.locationId !== loc.locationId);
+          list.push({ locationId: loc.locationId, name: loc.name, enabled: true });
+          c.locations = list;
+        }).then(() => homebridge.toast.success('Location added to settings.')),
+      );
+      actions.append(nameBtn);
+      card.append(actions);
+
+      if (!loc.zones.length) {
+        card.append(el('div', { class: 'small text-muted', text: 'No zones reported. Sync your panel from the Total Connect app.' }));
+        return card;
+      }
+
+      const table = el('table', { class: 'table table-sm small mb-0' });
+      const head = el('tr');
+      ['ID', 'Name', 'Part.', 'Type', 'Status', ''].forEach((h) => head.append(el('th', { text: h })));
+      table.append(el('thead', {}, head));
+      const body = el('tbody');
+
+      for (const z of loc.zones) {
+        const flags = [z.open ? 'Open' : 'Closed', z.bypassed ? 'Bypassed' : '', z.lowBattery ? 'Low battery' : '']
+          .filter(Boolean)
+          .join(', ');
+        const select = el('select', { class: 'form-select form-select-sm' });
+        ['auto', 'contact', 'motion', 'smoke', 'carbonMonoxide', 'leak', 'occupancy', 'hidden'].forEach((t) => {
+          const label = t === 'auto' ? `Auto (${TYPE_LABELS[z.suggestedType]})` : TYPE_LABELS[t];
+          select.append(el('option', { value: t, text: label }));
+        });
+        const existing = (config.zoneOverrides ?? []).find(
+          (o) => o.zoneId === z.id && (o.locationId === undefined || o.locationId === loc.locationId),
+        );
+        select.value = existing?.type ?? 'auto';
+        select.addEventListener('change', () =>
+          saveConfig((c) => {
+            const list = (c.zoneOverrides ?? []).filter((o) => !(o.zoneId === z.id && (o.locationId ?? loc.locationId) === loc.locationId));
+            if (select.value !== 'auto') {
+              list.push({ locationId: loc.locationId, zoneId: z.id, type: select.value });
+            }
+            c.zoneOverrides = list;
+          }).then(() => homebridge.toast.success(`Zone ${z.id} set to ${select.value}.`)),
+        );
+
+        const row = el('tr');
+        row.append(
+          el('td', { text: String(z.id) }),
+          el('td', { text: z.name }),
+          el('td', { text: String(z.partitionId) }),
+          el('td', {}, select),
+          el('td', { text: flags }),
+          el('td', { text: z.canBypass ? '' : 'Not bypassable', class: 'text-muted' }),
+        );
+        body.append(row);
+      }
+      table.append(body);
+      card.append(el('div', { class: 'table-responsive' }, table));
+      return card;
+    }
+
+    button.addEventListener('click', async () => {
+      const [current] = await homebridge.getPluginConfig();
+      const username = current?.username?.trim();
+      const password = current?.password;
+      results.replaceChildren();
+      if (!username || !password) {
+        homebridge.toast.warning('Enter your username and password in the form below first.');
+        return;
+      }
+
+      button.disabled = true;
+      status.className = 'small text-muted';
+      status.textContent = 'Signing in to Total Connect…';
+      homebridge.showSpinner();
+      try {
+        const data = await homebridge.request('/discover', { username, password });
+        status.className = 'small text-success';
+        status.textContent = `Signed in as ${data.user}. Found ${data.locations.length} location(s).`;
+        data.locations.forEach((loc) => results.append(renderLocation(loc)));
+        homebridge.toast.success('Login successful.');
+      } catch (err) {
+        status.className = 'small text-danger';
+        status.textContent = err?.message ?? 'Discovery failed.';
+        homebridge.toast.error(err?.message ?? 'Discovery failed.', 'Total Connect');
+      } finally {
+        homebridge.hideSpinner();
+        button.disabled = false;
+      }
+    });
+  })();
+</script>
+
