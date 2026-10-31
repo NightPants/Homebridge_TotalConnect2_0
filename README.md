@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="homebridge-ui/public/icon.png" width="120" height="120" alt="Honeywell Total Connect 2.0" style="border-radius: 24px;" />
+</p>
+
 # homebridge-honeywell-totalconnect
 
 Control your **Honeywell / Resideo Total Connect 2.0** security system from **Apple HomeKit** via [Homebridge](https://homebridge.io).
