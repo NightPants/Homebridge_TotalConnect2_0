@@ -1,5 +1,5 @@
 /**
- * Custom Homebridge UI server for homebridge-hoy-totalconnect.
+ * Custom Homebridge UI server for homebridge-honeywell-totalconnect.
  *
  * Exposes a single "/discover" request used by the settings screen to test the account and list
  * locations, partitions and zones so users can configure the plugin without guessing IDs.

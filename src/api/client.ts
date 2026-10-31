@@ -66,7 +66,7 @@ interface Token {
 }
 
 const TOKEN_EXPIRY_SKEW_MS = 60_000;
-const USER_AGENT = 'homebridge-hoy-totalconnect';
+const USER_AGENT = 'homebridge-honeywell-totalconnect';
 
 /** Validates that a URL is HTTPS and points to a trusted Resideo/AlarmNet host. */
 export function assertTrustedUrl(url: string): string {

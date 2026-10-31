@@ -21,7 +21,7 @@ describe('config resolution', () => {
   it('applies defaults, clamps intervals and honours environment variables', () => {
     const resolved = resolveConfig(
       {
-        platform: 'HoyTotalConnect',
+        platform: 'HoneywellTotalConnect',
         username: 'config-user',
         password: 'config-password',
         pollingInterval: 2, // clamped up to 10s
@@ -46,11 +46,11 @@ describe('config resolution', () => {
   });
 
   it('rejects missing credentials and malformed user codes', () => {
-    expect(() => resolveConfig({ platform: 'HoyTotalConnect' }, {})).toThrow(ConfigError);
+    expect(() => resolveConfig({ platform: 'HoneywellTotalConnect' }, {})).toThrow(ConfigError);
     expect(() =>
       resolveConfig(
         {
-          platform: 'HoyTotalConnect',
+          platform: 'HoneywellTotalConnect',
           username: 'u',
           password: 'p',
           userCode: '99',

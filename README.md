@@ -1,4 +1,4 @@
-# homebridge-hoy-totalconnect
+# homebridge-honeywell-totalconnect
 
 Control your **Honeywell / Resideo Total Connect 2.0** security system from **Apple HomeKit** via [Homebridge](https://homebridge.io).
 
@@ -51,7 +51,7 @@ Built for **Homebridge 1.8 & 2.0+** and **Node.js 22 / 24** with zero external H
 ### Option A: Homebridge UI (once published to npm)
 
 1. Open the **Homebridge UI** → **Plugins**.
-2. Search for `homebridge-hoy-totalconnect` and click **Install**.
+2. Search for `homebridge-honeywell-totalconnect` and click **Install**.
 
 ### Option B: Install Directly from GitHub / Local Clone
 
@@ -66,10 +66,10 @@ npm link
 If Homebridge runs under its own global Node environment (for example on Linux / Raspberry Pi / hb-service), link or install the built package into Homebridge's prefix:
 
 ```bash
-sudo hb-service add homebridge-hoy-totalconnect
+sudo hb-service add homebridge-honeywell-totalconnect
 # or install directly from a tarball:
 npm pack
-sudo npm install -g ./homebridge-hoy-totalconnect-1.0.0.tgz
+sudo npm install -g ./homebridge-honeywell-totalconnect-1.0.0.tgz
 ```
 
 Restart Homebridge after installing.
@@ -80,7 +80,7 @@ Restart Homebridge after installing.
 
 ### Using the Homebridge Settings UI (Recommended)
 
-1. Open **Plugins** → **Hoy Total Connect 2.0** → **Settings**.
+1. Open **Plugins** → **Honeywell Total Connect 2.0** → **Settings**.
 2. Enter your **Total Connect Username**, **Password**, and **4–8 digit Panel User Code**.
 3. Click **Test Login & Discover** at the top of the dialog:
    - Verifies your login and displays every **Location ID**, **Partition**, and **Zone**.
@@ -104,7 +104,7 @@ You can omit credentials from `config.json` (or override them) by setting enviro
 {
   "platforms": [
     {
-      "platform": "HoyTotalConnect",
+      "platform": "HoneywellTotalConnect",
       "name": "Total Connect",
       "username": "homebridge-user@example.com",
       "password": "your-password",

@@ -2,7 +2,7 @@
 
 ## Credential & Token Protections
 
-`homebridge-hoy-totalconnect` controls physical home security hardware, so security is treated as a first-class requirement:
+`homebridge-honeywell-totalconnect` controls physical home security hardware, so security is treated as a first-class requirement:
 
 1. **RSA-Encrypted Authentication**: Your Total Connect username and password are encrypted locally using Resideo's RSA public key (`PKCS#1 v1.5`) before being sent over HTTPS (`TLS 1.2+`) to `TC2API.Auth/token`. Plaintext credentials never travel on the wire.
 2. **Strict Host Pinning & Redirect Blocking**: Every API URL (including dynamic URLs returned by the bootstrap configuration) is validated with `assertTrustedUrl()` to enforce `https:` and a `*.alarmnet.com` hostname without embedded credentials, with HTTP redirects disabled (`redirect: 'error'`). Tokens and credentials are never sent to untrusted hosts.

@@ -171,7 +171,7 @@ describe('TotalConnectPlatform integration', () => {
     const platform = new TotalConnectPlatform(
       log,
       {
-        platform: 'HoyTotalConnect',
+        platform: 'HoneywellTotalConnect',
         username: 'user@example.com',
         password: 'pw',
         userCode: '1234',

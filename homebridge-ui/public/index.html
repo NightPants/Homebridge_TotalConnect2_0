@@ -29,7 +29,7 @@
       hidden: 'Hidden (button/keyfob)',
     };
 
-    let config = (await homebridge.getPluginConfig())[0] ?? { platform: 'HoyTotalConnect', name: 'Total Connect' };
+    let config = (await homebridge.getPluginConfig())[0] ?? { platform: 'HoneywellTotalConnect', name: 'Total Connect' };
     await homebridge.updatePluginConfig([config]);
     homebridge.showSchemaForm();
 
