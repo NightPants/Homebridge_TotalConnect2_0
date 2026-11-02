@@ -7,7 +7,6 @@
 <p align="center">
   <a href="https://github.com/homebridge/homebridge/wiki/Verified-Plugins"><img src="https://badgen.net/badge/homebridge/verified/purple" alt="verified-by-homebridge" /></a>
   <a href="https://www.npmjs.com/package/homebridge-honeywell-totalconnect"><img src="https://badgen.net/npm/v/homebridge-honeywell-totalconnect" alt="npm version" /></a>
-  <a href="https://www.npmjs.com/package/homebridge-honeywell-totalconnect"><img src="https://badgen.net/npm/dt/homebridge-honeywell-totalconnect" alt="npm downloads" /></a>
   <a href="https://github.com/NightPants/Homebridge_TotalConnect2_0/blob/main/LICENSE"><img src="https://badgen.net/badge/license/MIT/blue" alt="license" /></a>
   <a href="https://nodejs.org"><img src="https://badgen.net/badge/node/%3E=20/green" alt="node" /></a>
 </p>
