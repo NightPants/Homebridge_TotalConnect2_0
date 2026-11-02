@@ -1,7 +1,7 @@
 {
   "name": "homebridge-honeywell-totalconnect",
   "displayName": "Honeywell Total Connect 2.0",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Control your Honeywell / Resideo Total Connect 2.0 alarm system from Apple HomeKit via Homebridge. Arm, disarm, zone sensors, bypass and more.",
   "type": "module",
   "main": "dist/index.js",
@@ -17,6 +17,7 @@
   },
   "keywords": [
     "homebridge-plugin",
+    "supports-hap",
     "homebridge",
     "homekit",
     "total connect",

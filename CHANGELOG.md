@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2026-11-01
+
+### Added
+- Added `supports-hap` keyword to package.json per Homebridge 2.0 transport specification.
+- Updated `engines.node` to explicitly include Node 20 LTS.
+- Strict JSON Schema Draft-07 compliance for `config.schema.json`.
+
 ## [1.0.1] - 2026-10-31
 
 ### Added
