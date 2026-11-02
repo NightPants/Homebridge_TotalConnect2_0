@@ -12,27 +12,28 @@
       "name": {
         "title": "Name",
         "type": "string",
-        "default": "Total Connect",
-        "required": true
+        "default": "Total Connect"
       },
       "username": {
         "title": "Total Connect Username",
         "type": "string",
-        "required": true,
         "description": "Username (or email) you use to sign in to totalconnect2.com."
       },
       "password": {
         "title": "Total Connect Password",
         "type": "string",
-        "required": true,
-        "x-schema-form": { "type": "password" }
+        "x-schema-form": {
+          "type": "password"
+        }
       },
       "userCode": {
         "title": "Panel User Code",
         "type": "string",
         "pattern": "^(-1|[0-9]{4,8})$",
         "description": "The 4-8 digit code you type on the keypad. Required by most panels to arm/disarm remotely. Leave blank if your panel does not need one.",
-        "x-schema-form": { "type": "password" }
+        "x-schema-form": {
+          "type": "password"
+        }
       },
       "locations": {
         "title": "Per-Location Settings",
@@ -40,16 +41,31 @@
         "items": {
           "type": "object",
           "properties": {
-            "locationId": { "title": "Location ID", "type": "integer", "required": true },
-            "name": { "title": "Display Name (optional)", "type": "string" },
+            "locationId": {
+              "title": "Location ID",
+              "type": "integer"
+            },
+            "name": {
+              "title": "Display Name (optional)",
+              "type": "string"
+            },
             "userCode": {
               "title": "User Code Override",
               "type": "string",
               "pattern": "^(-1|[0-9]{4,8})$",
-              "x-schema-form": { "type": "password" }
+              "x-schema-form": {
+                "type": "password"
+              }
             },
-            "enabled": { "title": "Enabled", "type": "boolean", "default": true }
-          }
+            "enabled": {
+              "title": "Enabled",
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "required": [
+            "locationId"
+          ]
         }
       },
       "partitionMode": {
@@ -57,8 +73,18 @@
         "type": "string",
         "default": "combined",
         "oneOf": [
-          { "title": "One Security System for the whole location (all partitions)", "enum": ["combined"] },
-          { "title": "A separate Security System for each partition", "enum": ["separate"] }
+          {
+            "title": "One Security System for the whole location (all partitions)",
+            "enum": [
+              "combined"
+            ]
+          },
+          {
+            "title": "A separate Security System for each partition",
+            "enum": [
+              "separate"
+            ]
+          }
         ]
       },
       "homeMode": {
@@ -66,11 +92,36 @@
         "type": "string",
         "default": "stay",
         "oneOf": [
-          { "title": "Stay", "enum": ["stay"] },
-          { "title": "Stay - Instant (no entry delay)", "enum": ["stayInstant"] },
-          { "title": "Night Stay", "enum": ["night"] },
-          { "title": "Away", "enum": ["away"] },
-          { "title": "Away - Instant", "enum": ["awayInstant"] }
+          {
+            "title": "Stay",
+            "enum": [
+              "stay"
+            ]
+          },
+          {
+            "title": "Stay - Instant (no entry delay)",
+            "enum": [
+              "stayInstant"
+            ]
+          },
+          {
+            "title": "Night Stay",
+            "enum": [
+              "night"
+            ]
+          },
+          {
+            "title": "Away",
+            "enum": [
+              "away"
+            ]
+          },
+          {
+            "title": "Away - Instant",
+            "enum": [
+              "awayInstant"
+            ]
+          }
         ]
       },
       "nightMode": {
@@ -78,13 +129,48 @@
         "type": "string",
         "default": "auto",
         "oneOf": [
-          { "title": "Automatic (Night Stay if supported, otherwise Stay - Instant)", "enum": ["auto"] },
-          { "title": "Night Stay", "enum": ["night"] },
-          { "title": "Stay - Instant (no entry delay)", "enum": ["stayInstant"] },
-          { "title": "Stay", "enum": ["stay"] },
-          { "title": "Away", "enum": ["away"] },
-          { "title": "Away - Instant", "enum": ["awayInstant"] },
-          { "title": "Hide the Night option in HomeKit", "enum": ["disabled"] }
+          {
+            "title": "Automatic (Night Stay if supported, otherwise Stay - Instant)",
+            "enum": [
+              "auto"
+            ]
+          },
+          {
+            "title": "Night Stay",
+            "enum": [
+              "night"
+            ]
+          },
+          {
+            "title": "Stay - Instant (no entry delay)",
+            "enum": [
+              "stayInstant"
+            ]
+          },
+          {
+            "title": "Stay",
+            "enum": [
+              "stay"
+            ]
+          },
+          {
+            "title": "Away",
+            "enum": [
+              "away"
+            ]
+          },
+          {
+            "title": "Away - Instant",
+            "enum": [
+              "awayInstant"
+            ]
+          },
+          {
+            "title": "Hide the Night option in HomeKit",
+            "enum": [
+              "disabled"
+            ]
+          }
         ]
       },
       "awayMode": {
@@ -92,8 +178,18 @@
         "type": "string",
         "default": "away",
         "oneOf": [
-          { "title": "Away", "enum": ["away"] },
-          { "title": "Away - Instant (no entry delay)", "enum": ["awayInstant"] }
+          {
+            "title": "Away",
+            "enum": [
+              "away"
+            ]
+          },
+          {
+            "title": "Away - Instant (no entry delay)",
+            "enum": [
+              "awayInstant"
+            ]
+          }
         ]
       },
       "allowDisarm": {
@@ -121,9 +217,24 @@
         "items": {
           "type": "string",
           "oneOf": [
-            { "title": "Arm Away", "enum": ["away"] },
-            { "title": "Arm Home (Stay)", "enum": ["stay"] },
-            { "title": "Arm Night", "enum": ["night"] }
+            {
+              "title": "Arm Away",
+              "enum": [
+                "away"
+              ]
+            },
+            {
+              "title": "Arm Home (Stay)",
+              "enum": [
+                "stay"
+              ]
+            },
+            {
+              "title": "Arm Night",
+              "enum": [
+                "night"
+              ]
+            }
           ]
         }
       },
@@ -143,20 +254,39 @@
         "type": "string",
         "default": "all",
         "oneOf": [
-          { "title": "Show all zones", "enum": ["all"] },
-          { "title": "Show only the zone IDs listed below", "enum": ["selected"] },
-          { "title": "Do not show zones", "enum": ["none"] }
+          {
+            "title": "Show all zones",
+            "enum": [
+              "all"
+            ]
+          },
+          {
+            "title": "Show only the zone IDs listed below",
+            "enum": [
+              "selected"
+            ]
+          },
+          {
+            "title": "Do not show zones",
+            "enum": [
+              "none"
+            ]
+          }
         ]
       },
       "zoneIds": {
         "title": "Zone IDs to show",
         "type": "array",
-        "items": { "type": "integer" }
+        "items": {
+          "type": "integer"
+        }
       },
       "excludeZoneIds": {
         "title": "Zone IDs to hide",
         "type": "array",
-        "items": { "type": "integer" }
+        "items": {
+          "type": "integer"
+        }
       },
       "hideButtonZones": {
         "title": "Hide key fobs, keypads and panic buttons",
@@ -175,25 +305,77 @@
         "items": {
           "type": "object",
           "properties": {
-            "locationId": { "title": "Location ID (optional)", "type": "integer" },
-            "zoneId": { "title": "Zone ID", "type": "integer", "required": true },
-            "name": { "title": "Name (optional)", "type": "string" },
+            "locationId": {
+              "title": "Location ID (optional)",
+              "type": "integer"
+            },
+            "zoneId": {
+              "title": "Zone ID",
+              "type": "integer"
+            },
+            "name": {
+              "title": "Name (optional)",
+              "type": "string"
+            },
             "type": {
               "title": "Sensor Type",
               "type": "string",
               "default": "auto",
               "oneOf": [
-                { "title": "Automatic", "enum": ["auto"] },
-                { "title": "Contact (door/window)", "enum": ["contact"] },
-                { "title": "Motion", "enum": ["motion"] },
-                { "title": "Smoke", "enum": ["smoke"] },
-                { "title": "Carbon Monoxide", "enum": ["carbonMonoxide"] },
-                { "title": "Leak / Flood", "enum": ["leak"] },
-                { "title": "Occupancy", "enum": ["occupancy"] },
-                { "title": "Hidden", "enum": ["hidden"] }
+                {
+                  "title": "Automatic",
+                  "enum": [
+                    "auto"
+                  ]
+                },
+                {
+                  "title": "Contact (door/window)",
+                  "enum": [
+                    "contact"
+                  ]
+                },
+                {
+                  "title": "Motion",
+                  "enum": [
+                    "motion"
+                  ]
+                },
+                {
+                  "title": "Smoke",
+                  "enum": [
+                    "smoke"
+                  ]
+                },
+                {
+                  "title": "Carbon Monoxide",
+                  "enum": [
+                    "carbonMonoxide"
+                  ]
+                },
+                {
+                  "title": "Leak / Flood",
+                  "enum": [
+                    "leak"
+                  ]
+                },
+                {
+                  "title": "Occupancy",
+                  "enum": [
+                    "occupancy"
+                  ]
+                },
+                {
+                  "title": "Hidden",
+                  "enum": [
+                    "hidden"
+                  ]
+                }
               ]
             }
-          }
+          },
+          "required": [
+            "zoneId"
+          ]
         }
       },
       "pollingInterval": {
@@ -224,27 +406,48 @@
         "default": false,
         "description": "Log API activity at info level. Secrets are always redacted."
       }
-    }
+    },
+    "required": [
+      "username",
+      "password"
+    ]
   },
   "layout": [
     {
       "type": "fieldset",
       "title": "Account",
-      "items": ["name", "username", "password", "userCode"]
+      "items": [
+        "name",
+        "username",
+        "password",
+        "userCode"
+      ]
     },
     {
       "type": "fieldset",
       "title": "Arming",
       "expandable": true,
       "expanded": true,
-      "items": ["partitionMode", "homeMode", "nightMode", "awayMode", "allowDisarm"]
+      "items": [
+        "partitionMode",
+        "homeMode",
+        "nightMode",
+        "awayMode",
+        "allowDisarm"
+      ]
     },
     {
       "type": "fieldset",
       "title": "Automations & Extras",
       "expandable": true,
       "expanded": false,
-      "items": ["autoBypassOnArm", "autoBypassLowBattery", "armingSwitches", "bypassSwitches", "alarmSensor"]
+      "items": [
+        "autoBypassOnArm",
+        "autoBypassLowBattery",
+        "armingSwitches",
+        "bypassSwitches",
+        "alarmSensor"
+      ]
     },
     {
       "type": "fieldset",
@@ -255,14 +458,20 @@
         "zoneExposure",
         {
           "key": "zoneIds",
-          "condition": { "functionBody": "return model.zoneExposure === 'selected';" },
+          "condition": {
+            "functionBody": "return model.zoneExposure === 'selected';"
+          },
           "type": "array",
-          "items": ["zoneIds[]"]
+          "items": [
+            "zoneIds[]"
+          ]
         },
         {
           "key": "excludeZoneIds",
           "type": "array",
-          "items": ["excludeZoneIds[]"]
+          "items": [
+            "excludeZoneIds[]"
+          ]
         },
         "hideButtonZones",
         "zoneBypassSwitches",
@@ -271,7 +480,12 @@
           "type": "array",
           "orderable": false,
           "buttonText": "Add Zone Override",
-          "items": ["zoneOverrides[].locationId", "zoneOverrides[].zoneId", "zoneOverrides[].name", "zoneOverrides[].type"]
+          "items": [
+            "zoneOverrides[].locationId",
+            "zoneOverrides[].zoneId",
+            "zoneOverrides[].name",
+            "zoneOverrides[].type"
+          ]
         }
       ]
     },
@@ -286,7 +500,12 @@
           "type": "array",
           "orderable": false,
           "buttonText": "Add Location Settings",
-          "items": ["locations[].locationId", "locations[].name", "locations[].userCode", "locations[].enabled"]
+          "items": [
+            "locations[].locationId",
+            "locations[].name",
+            "locations[].userCode",
+            "locations[].enabled"
+          ]
         }
       ]
     },
@@ -295,8 +514,12 @@
       "title": "Advanced",
       "expandable": true,
       "expanded": false,
-      "items": ["pollingInterval", "fastPollingInterval", "requestTimeout", "verboseLogging"]
+      "items": [
+        "pollingInterval",
+        "fastPollingInterval",
+        "requestTimeout",
+        "verboseLogging"
+      ]
     }
   ]
 }
-

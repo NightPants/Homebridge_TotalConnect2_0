@@ -4,9 +4,17 @@
 
 # homebridge-honeywell-totalconnect
 
+<p align="center">
+  <a href="https://github.com/homebridge/homebridge/wiki/Verified-Plugins"><img src="https://badgen.net/badge/homebridge/verified/purple" alt="verified-by-homebridge" /></a>
+  <a href="https://www.npmjs.com/package/homebridge-honeywell-totalconnect"><img src="https://badgen.net/npm/v/homebridge-honeywell-totalconnect" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/homebridge-honeywell-totalconnect"><img src="https://badgen.net/npm/dt/homebridge-honeywell-totalconnect" alt="npm downloads" /></a>
+  <a href="https://github.com/NightPants/Homebridge_TotalConnect2_0/blob/main/LICENSE"><img src="https://badgen.net/badge/license/MIT/blue" alt="license" /></a>
+  <a href="https://nodejs.org"><img src="https://badgen.net/badge/node/%3E=20/green" alt="node" /></a>
+</p>
+
 Control your **Honeywell / Resideo Total Connect 2.0** security system from **Apple HomeKit** via [Homebridge](https://homebridge.io).
 
-Built for **Homebridge 1.8 & 2.0+** and **Node.js 22 / 24** with zero external HTTP/crypto dependencies, an interactive **Test Login & Discover** configuration UI, full multi-location and multi-partition support, zone sensors, bypass management, and HomeKit-friendly automation switches.
+Built for **Homebridge 1.8 & 2.0+** and **Node.js 20 / 22 / 24 LTS** with zero external HTTP/crypto dependencies, an interactive **Test Login & Discover** configuration UI, full multi-location and multi-partition support, zone sensors, bypass management, and HomeKit-friendly automation switches.
 
 ---
 
@@ -52,12 +60,20 @@ Built for **Homebridge 1.8 & 2.0+** and **Node.js 22 / 24** with zero external H
 
 ## Installation
 
-### Option A: Homebridge UI (once published to npm)
+### Option A: Homebridge Web UI (Recommended)
 
 1. Open the **Homebridge UI** → **Plugins**.
 2. Search for `homebridge-honeywell-totalconnect` and click **Install**.
 
-### Option B: Install Directly from GitHub / Local Clone
+### Option B: Terminal / Command Line
+
+```bash
+npm install -g homebridge-honeywell-totalconnect
+# or with hb-service on Linux / Raspberry Pi:
+sudo hb-service add homebridge-honeywell-totalconnect
+```
+
+### Option C: Install Directly from GitHub / Local Clone
 
 ```bash
 git clone https://github.com/NightPants/Homebridge_TotalConnect2_0.git
@@ -73,7 +89,7 @@ If Homebridge runs under its own global Node environment (for example on Linux /
 sudo hb-service add homebridge-honeywell-totalconnect
 # or install directly from a tarball:
 npm pack
-sudo npm install -g ./homebridge-honeywell-totalconnect-1.0.0.tgz
+sudo npm install -g ./homebridge-honeywell-totalconnect-1.0.1.tgz
 ```
 
 Restart Homebridge after installing.
