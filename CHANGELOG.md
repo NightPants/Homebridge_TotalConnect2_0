@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2026-11-11
+
+### Added
+- Added `funding` metadata in `package.json` for Homebridge UI Donate button support.
+- Added PayPal donation section to `README.md`.
+
 ## [1.0.2] - 2026-11-01
 
 ### Added

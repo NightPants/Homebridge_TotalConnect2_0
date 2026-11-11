@@ -266,6 +266,14 @@ npm run build       # Clean compile to dist/
 
 ---
 
+## Support & Donations
+
+If this plugin helps automate your Honeywell / Resideo Total Connect 2.0 security system in Apple HomeKit, please consider supporting future maintenance and development:
+
+[![Donate with PayPal](https://img.shields.io/badge/Donate-PayPal-00457C.svg?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/ncp/payment/EGCFVVRYZCHXU)
+
+---
+
 ## Disclaimer & License
 
 This project is an independent community Homebridge integration and is not affiliated with, endorsed by, or supported by Honeywell International Inc. or Resideo Technologies, Inc. Use at your own risk; never rely on smart-home integrations as a life-safety system.
